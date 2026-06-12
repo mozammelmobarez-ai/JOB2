@@ -25,6 +25,11 @@ from telegram.ext import (
     MessageHandler, ContextTypes, filters
 )
 
+# Fix for Python 3.13 compatibility
+import asyncio
+if hasattr(asyncio, 'ThreadedChildWatcher'):
+    asyncio.set_child_watcher(asyncio.ThreadedChildWatcher())
+
 # ===================== LOGGING =====================
 logging.basicConfig(
     level=logging.INFO,
